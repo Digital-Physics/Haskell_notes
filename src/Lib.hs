@@ -1,10 +1,4 @@
---comment
-{-
-multiline
-comment
--}
- 
-
+--Need to think more about this IO and what's up with putStrLn
 module Lib
     ( someFunc
     ) where
@@ -12,8 +6,26 @@ module Lib
 someFunc :: IO ()
 someFunc = putStrLn "someFunc"
 
+{-
+Type signatures show up with IDE plug-in.
+So some lines of code don't include them.
+I probably should put them in for viewing in GitHub and for clarity sake 
+even though the Type inference works well.
+-}
+
+--Num Typeclass:
+--https://en.wikibooks.org/wiki/Haskell/Type_basics_II
+--Num includes Int (small int type), Integer(unbounded int type), Double(floating type)
+double :: Num a => a -> a 
 double x = x + x
 
+-- Currying (passing arguments one at a time and returning intermediate functions)
+-- https://wiki.haskell.org/Currying
+-- function_name input_argument_1 input_argument_2
+jdkAdd :: Num a => a -> a -> a
+jdkAdd x y = x + y 
+
+--parentheses were needed here for the input/output Types to work
 quadruple x = double (double x)
  
 factorial n = product [2..n]
@@ -22,6 +34,7 @@ average ns = sum ns `div` length ns
 
 otherAverage ns = div (sum ns) (length ns)
 
+-- f(x) = (x+1)^2
 poly x = let
     y = x + 1
     in y*y
@@ -354,7 +367,6 @@ matrix2 ::  Num a => [a] -> [a] -> [[a]]
 matrix2 x y = [[x*y| x <- x]| y <- y]
 
 -- another change test
-
 
 
 
